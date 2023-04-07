@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
+  const navigate = useNavigate();
+
   return (
     // <nav aria-label="breadcrumb">
     //   <ul>
@@ -17,9 +20,15 @@ const Menu = () => {
     // </nav>
     <div>
       <div className="grid" style={{ display: "flex" }}>
-        <button style={{ width: "17%" }}>일반 계산</button>
-        <button style={{ width: "17%" }}>날짜 계산</button>
-        <button style={{ width: "18%" }}>글자수 계산</button>
+        <button style={{ width: "17%" }} onClick={() => navigate("/")}>
+          일반 계산
+        </button>
+        <button style={{ width: "17%" }} onClick={() => navigate("/dateCal")}>
+          날짜 계산
+        </button>
+        <button style={{ width: "18%" }} onClick={() => navigate("/wordCal")}>
+          글자수 계산
+        </button>
         <button style={{ width: "17%" }}>이자 계산</button>
       </div>
       {/* <div className="grid" style={{ display: "flex" }}>

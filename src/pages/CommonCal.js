@@ -57,7 +57,7 @@ const CommonCal = () => {
       reset();
     } else if (key === "Backspace") {
       backspace();
-    } else if (/^[0-9/*\-+.]$/.test(key)) {
+    } else if (/^[0-9/*\-+.()]$/.test(key)) {
       setResult(result + key);
     }
   };
@@ -65,7 +65,7 @@ const CommonCal = () => {
   return (
     <div className="CommonCal">
       <div className="calculator-body">
-        <h1>Simple Calculator</h1>
+        <h1>계산기</h1>
         <ResultComponent result={result} />
         <KeyPadComponent onClick={onClick} />
       </div>

@@ -1,0 +1,21 @@
+.CommonCal .KeyPad {
+  display: block;
+  background-color: #bbb;
+}
+
+.CommonCal button {
+  display: inline-block;
+  width: 25%;
+  height: 60px;
+  font-size: 30px;
+  margin: auto;
+  border: 1px solid;
+}
+
+.CommonCal .result {
+  height: 60px;
+  background-color: #ececec;
+  width: 100%;
+  font-size: 40px;
+  margin: 5px;
+}

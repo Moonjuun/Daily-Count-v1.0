@@ -9,6 +9,7 @@ import CommonCal from "./pages/CommonCal";
 import WordCal from "./pages/WordCal";
 import DateCal from "./pages/DateCal";
 import BmiCal from "./pages/BmiCal";
+import Interest from "./pages/Interest";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -37,6 +38,7 @@ function App() {
               <Route path="/WordCal" element={<WordCal />}></Route>
               <Route path="/DateCal" element={<DateCal />}></Route>
               <Route path="/BmiCal" element={<BmiCal />}></Route>
+              <Route path="/Interest" element={<Interest />}></Route>
             </Routes>
           </div>
           <footer style={{ textAlign: "center" }}>

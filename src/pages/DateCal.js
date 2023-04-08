@@ -22,6 +22,10 @@ function DateCal() {
   const [afterDate, setAfterDate] = useState("");
 
   function calculateDate() {
+    if (!dateInput1) {
+      window.alert("값 넣어주세요");
+      return;
+    }
     const date = moment(firstDateInput).add(dateInput1 - 1, "days");
     setAfterDate(date.format("YYYY-MM-DD"));
   }
@@ -30,6 +34,10 @@ function DateCal() {
   const [dayminusDate, setDayMinusDate] = useState("");
 
   function calcuateDDay() {
+    if (!dateInput2) {
+      window.alert("값 넣어주세요");
+      return;
+    }
     const date = moment(firstDateInput).subtract(dateInput2, "days");
 
     setDayMinusDate(date.format("YYYY-MM-DD"));

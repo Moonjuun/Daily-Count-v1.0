@@ -13,14 +13,20 @@ import BmiCal from "./pages/BmiCal";
 function App() {
   const [theme, setTheme] = useState("light");
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  function toggleTheme() {
+    if (theme === "light") {
+      setTheme("dark");
+      document.body.setAttribute("data-theme", "dark"); // body 태그에 data-theme 속성 추가
+    } else {
+      setTheme("light");
+      document.body.setAttribute("data-theme", "light"); // body 태그에 data-theme 속성 추가
+    }
+  }
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <article data-theme={theme}>
+      <div className="App" data-theme={theme}>
+        <article>
           <div className="container">
             <Header theme={theme} toggleTheme={toggleTheme} />
             <Menu />

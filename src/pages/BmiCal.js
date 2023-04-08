@@ -1,93 +1,104 @@
 import React, { useState } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
 
 const BmiCal = () => {
   const [gender, setGender] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [age, setAge] = useState("");
-  const [bmi, setBmi] = useState(null);
+  const [bmi, setBmi] = useState(<p></p>);
+  const [resultBmi, setCategory] = useState(<p></p>);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    if (name === "gender") {
-      setGender(value);
-    } else if (name === "height") {
-      setHeight(value);
-    } else if (name === "weight") {
-      setWeight(value);
-    } else if (name === "age") {
-      setAge(value);
-    }
+  const handleGenderChange = (event) => {
+    setGender(event.target.value);
+  };
+
+  const handleHeightChange = (event) => {
+    setHeight(event.target.value);
+  };
+
+  const handleWeightChange = (event) => {
+    setWeight(event.target.value);
+  };
+
+  const handleAgeChange = (event) => {
+    setAge(event.target.value);
   };
 
   const calculateBMI = () => {
+    if (!gender || !height || !weight || !age) {
+      window.alert("값을 다 넣어주세요");
+      return;
+    }
+
     const heightInMeter = height / 100;
     const bmi = weight / (heightInMeter * heightInMeter);
     setBmi(bmi.toFixed(2));
-  };
 
-  const data = [
-    { name: "18.5 이하", BMI: 18.5 },
-    { name: "18.5 ~ 23", BMI: 23 },
-    { name: "23 ~ 25", BMI: 25 },
-    { name: "25 ~ 30", BMI: 30 },
-    { name: "30 이상", BMI: 35 },
-  ];
+    if (bmi < 18.5) {
+      setCategory("저체중");
+    } else if (bmi >= 18.5 && bmi < 23) {
+      setCategory("정상");
+    } else if (bmi >= 23 && bmi < 25) {
+      setCategory("과체중");
+    } else if (bmi >= 25 && bmi < 30) {
+      setCategory("비만");
+    } else {
+      setCategory("고도비만");
+    }
+  };
 
   return (
     <div>
       <h1>BMI 계산기</h1>
       <form>
         <label>
-          성별:
+          성별: <br />
           <input
             type="radio"
             name="gender"
             value="male"
-            onChange={handleChange}
-          />{" "}
-          남성
+            checked={gender === "male"}
+            onChange={handleGenderChange}
+          />
+          남성&nbsp;
           <input
             type="radio"
             name="gender"
             value="female"
-            onChange={handleChange}
-          />{" "}
+            checked={gender === "female"}
+            onChange={handleGenderChange}
+          />
           여성
         </label>
         <br />
         <label>
           키 (cm):
           <input
-            type="text"
+            type="number"
             name="height"
             value={height}
-            onChange={handleChange}
+            onChange={handleHeightChange}
           />
         </label>
         <br />
         <label>
           체중 (kg):
           <input
-            type="text"
+            type="number"
             name="weight"
             value={weight}
-            onChange={handleChange}
+            onChange={handleWeightChange}
           />
         </label>
         <br />
         <label>
           나이:
-          <input type="text" name="age" value={age} onChange={handleChange} />
+          <input
+            type="number"
+            name="age"
+            value={age}
+            onChange={handleAgeChange}
+          />
         </label>
         <br />
         <button type="button" onClick={calculateBMI}>
@@ -96,7 +107,8 @@ const BmiCal = () => {
       </form>
       {bmi && (
         <div>
-          <h2>BMI 지수: {bmi}</h2>
+          <h4>BMI 지수: {bmi}</h4>
+          <h4>비만도: {resultBmi}</h4>
         </div>
       )}
     </div>

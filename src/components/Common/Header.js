@@ -2,9 +2,17 @@ import React from "react";
 
 const Header = ({ theme, toggleTheme }) => {
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <h1 style={{ marginRight: "auto" }}>Daily Count</h1>
-
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <h1 style={{ marginRight: "auto" }}>
+        Daily <br />
+        Count
+      </h1>
       {/* 버튼 */}
       {/* <button
         className="toggle-btn"

@@ -44,6 +44,8 @@ const Menu = () => {
         <option value="/DateCal">날짜 계산기</option>
         <option value="/WordCal">글자수 계산기</option>
         <option value="/BmiCal">비만도 계산</option>
+        <option value="/PercentageCal">퍼센트 계산</option>
+
       </select>
     </div>
   );

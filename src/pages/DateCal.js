@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import moment from "moment";
 
 function DateCal() {
+
+  // 기준일
   const [firstDateInput, setFirstDateInput] = useState(
     moment().format("YYYY-MM-DD")
   );

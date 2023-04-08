@@ -3,7 +3,7 @@ import ResultComponent from "../components/CommonCal/ResultComponent";
 import KeyPadComponent from "../components/CommonCal/KeyPadComponent";
 
 const CommonCal = () => {
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(" ");
 
   const onClick = (button) => {
     if (button === "=") {

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ResultComponent = ({ result, theme }) => {
+const ResultComponent = ({ result }) => {
   const formattedResult = result
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ","); // 천 단위 쉼표 추가

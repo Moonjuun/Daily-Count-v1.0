@@ -14,7 +14,11 @@ function PercentageCal() {
   }
 
   function calculatePercentage() {
-    setResult((number2 / number1) * 100);
+    if (number1 !== 0 && number2 !== 0) {
+      setResult((number2 / number1) * 100);
+    } else {
+      alert("수식을 채워주세요");
+    }
   }
 
   return (
@@ -31,7 +35,7 @@ function PercentageCal() {
           />
         </span>
         <span>
-          의&nbsp;&nbsp;
+          &nbsp;의&nbsp;&nbsp;
           <input
             type="number"
             value={number2}
@@ -41,7 +45,7 @@ function PercentageCal() {
         </span>
         <span>&nbsp;%는 얼마??</span>
         <br />
-        <button onClick={calculatePercentage}>Calculate Percentage</button>
+        <button onClick={calculatePercentage}>계산</button>
         <br />
       </div>
 

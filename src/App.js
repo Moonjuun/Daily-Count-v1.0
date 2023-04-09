@@ -10,7 +10,16 @@ import WordCal from "./pages/WordCal";
 import DateCal from "./pages/DateCal";
 import BmiCal from "./pages/BmiCal";
 import Interest from "./pages/Interest";
-import PercentageCal from "./pages/PercentCal"
+import PercentageCal from "./pages/PercentCal";
+import LengthCal from "./pages/Convert/LengthCal";
+import AreaCal from "./pages/Convert/AreaCal";
+import WeightCal from "./pages/Convert/WeightCal";
+import VolumeCal from "./pages/Convert/VolumeCal";
+import TemperatureCal from "./pages/Convert/TemperatureCal";
+import PressCal from "./pages/Convert/PressCal";
+import VelocityCal from "./pages/Convert/VelocityCal";
+import FuelCal from "./pages/Convert/FuelCal";
+import DataCal from "./pages/Convert/DataCal";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -41,6 +50,18 @@ function App() {
               <Route path="/BmiCal" element={<BmiCal />}></Route>
               <Route path="/Interest" element={<Interest />}></Route>
               <Route path="/PercentageCal" element={<PercentageCal />}></Route>
+              <Route path="/LengthCal" element={<LengthCal />}></Route>
+              <Route path="/AreaCal" element={<AreaCal />}></Route>
+              <Route path="/WeightCal" element={<WeightCal />}></Route>
+              <Route path="/VolumeCal" element={<VolumeCal />}></Route>
+              <Route
+                path="/TemperatureCal"
+                element={<TemperatureCal />}
+              ></Route>
+              <Route path="/PressCal" element={<PressCal />}></Route>
+              <Route path="/VelocityCal" element={<VelocityCal />}></Route>
+              <Route path="/FuelCal" element={<FuelCal />}></Route>
+              <Route path="/DataCal" element={<DataCal />}></Route>
             </Routes>
           </div>
           <footer style={{ textAlign: "center" }}>

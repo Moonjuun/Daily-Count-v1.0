@@ -25,3 +25,6 @@ npm start
 
 ## Site
 https://daily-count.com
+
+## Version
+1.1.0 공유 기능 추가, 2023-04-11

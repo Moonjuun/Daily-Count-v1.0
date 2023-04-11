@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "@picocss/pico/css/pico.min.css";
 import Header from "./components/Common/Header";
 import Menu from "./components/Common/Menu";
+import Footer from "./components/Common/Footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -39,8 +40,10 @@ function App() {
       <div className="App" data-theme={theme}>
         <article>
           <div className="container">
-            <Header theme={theme} toggleTheme={toggleTheme} />
-            <Menu />
+            <header>
+              <Header theme={theme} toggleTheme={toggleTheme} />
+              <Menu />
+            </header>
             <div className="jb-division-line"></div>
 
             <Routes>
@@ -64,8 +67,8 @@ function App() {
               <Route path="/DataCal" element={<DataCal />}></Route>
             </Routes>
           </div>
-          <footer style={{ textAlign: "center" }}>
-            <p> © 2023 cmoonjun11@gmail.com</p>
+          <footer>
+            <Footer></Footer>
           </footer>
         </article>
       </div>

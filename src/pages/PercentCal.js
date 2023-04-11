@@ -14,10 +14,12 @@ function PercentageCal() {
   }
 
   function calculatePercentage() {
-    if (number1 !== 0 && number2 !== 0) {
-      setResult((number2 / number1) * 100);
+    if (number1 !== 0) {
+      setResult(number2 * number1 * 0.01);
+      console.log(number2);
+      console.log(number1);
     } else {
-      alert("수식을 채워주세요");
+      alert("올바른 수식을 채워주세요");
     }
   }
 
@@ -30,8 +32,11 @@ function PercentageCal() {
           <input
             type="number"
             value={number1}
+            onFocus={() => {
+              setNumber1("");
+            }}
             onChange={handleNumber1Change}
-            style={{ width: "15%", textAlign: "center" }}
+            style={{ width: "20%", textAlign: "center" }}
           />
         </span>
         <span>
@@ -39,8 +44,11 @@ function PercentageCal() {
           <input
             type="number"
             value={number2}
+            onFocus={() => {
+              setNumber2("");
+            }}
             onChange={handleNumber2Change}
-            style={{ width: "15%", textAlign: "center" }}
+            style={{ width: "20%", textAlign: "center" }}
           />
         </span>
         <span>&nbsp;%는 얼마??</span>

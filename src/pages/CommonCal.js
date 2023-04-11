@@ -3,7 +3,7 @@ import ResultComponent from "../components/CommonCal/ResultComponent";
 import KeyPadComponent from "../components/CommonCal/KeyPadComponent";
 
 const CommonCal = () => {
-  const [result, setResult] = useState(" ");
+  const [result, setResult] = useState("");
 
   const onClick = (button) => {
     if (button === "=") {
@@ -43,9 +43,9 @@ const CommonCal = () => {
   };
 
   useEffect(() => {
-    document.addEventListener("keyup", handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener("keyup", handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [result]);
 

@@ -21,6 +21,7 @@ import PressCal from "./pages/Convert/PressCal";
 import VelocityCal from "./pages/Convert/VelocityCal";
 import FuelCal from "./pages/Convert/FuelCal";
 import DataCal from "./pages/Convert/DataCal";
+import HourlyWageCal from "./pages/Wage/HourlyWageCal";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -65,6 +66,7 @@ function App() {
               <Route path="/VelocityCal" element={<VelocityCal />}></Route>
               <Route path="/FuelCal" element={<FuelCal />}></Route>
               <Route path="/DataCal" element={<DataCal />}></Route>
+              <Route path="/HourlyWageCal" element={<HourlyWageCal />}></Route>
             </Routes>
           </div>
           <footer>

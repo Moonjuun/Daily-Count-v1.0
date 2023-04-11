@@ -12,18 +12,19 @@ const CommonCal = () => {
       reset();
     } else if (button === "BS") {
       backspace();
+    } else if (
+      (button === "+" || button === "-" || button === "*" || button === "/") &&
+      (result === "" || /[+\-*/]$/.test(result))
+    ) {
+      // do nothing
     } else {
-      setResult(result + button);
+      setResult(result === "0" ? button : result + button);
     }
   };
 
   const calculate = () => {
     let checkResult = "";
-    if (result.includes("--")) {
-      checkResult = result.replace("--", "+");
-    } else {
-      checkResult = result;
-    }
+    checkResult = result;
 
     try {
       setResult(String(eval(checkResult)) || "");
@@ -58,7 +59,14 @@ const CommonCal = () => {
     } else if (key === "Backspace") {
       backspace();
     } else if (/^[0-9/*\-+.()]$/.test(key)) {
-      setResult(result + key);
+      if (
+        (key === "+" || key === "-" || key === "*" || key === "/") &&
+        (result === "" || /[+\-*/]$/.test(result))
+      ) {
+        // do nothing
+      } else {
+        setResult(result === "0" ? key : result + key);
+      }
     }
   };
 

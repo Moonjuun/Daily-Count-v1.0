@@ -36,10 +36,11 @@ body[data-theme="dark"] {
   background-color: #bbb;
 }
 
-.CommonCal button {
+.CommonCal .button {
   display: inline-block;
-  width: 25%;
+  width: 20%;
   height: 60px;
+  text-align: center;
   font-size: 30px;
   margin: auto;
   border: 1px solid;
@@ -48,9 +49,14 @@ body[data-theme="dark"] {
 .CommonCal .result {
   height: 60px;
   background-color: #ececec;
-  width: 98%;
+  width: 80%;
+  align-items: center;
+  border-radius: 5px;
   font-size: 40px;
-  margin: 5px;
+  margin-bottom: 10px;
+  color: #000000;
+  text-align: right;
+  padding-right: 10px;
 }
 
 .jb-division-line {

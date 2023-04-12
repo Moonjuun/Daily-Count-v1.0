@@ -17,8 +17,20 @@ const CommonCal = () => {
       (result === "" || /[+\-*/]$/.test(result))
     ) {
       // do nothing
+    } else if (
+      button === "." &&
+      (!result || /[^\d]$/.test(result) || result === "0")
+    ) {
+      setResult(result === "" ? "0" : result);
+      setResult(result + ".");
     } else {
-      setResult(result === "0" ? button : result + button);
+      setResult(
+        result === "0"
+          ? button
+          : result === "0."
+          ? "0." + button
+          : result + button
+      );
     }
   };
 
@@ -64,8 +76,16 @@ const CommonCal = () => {
         (result === "" || /[+\-*/]$/.test(result))
       ) {
         // do nothing
+      } else if (
+        key === "." &&
+        (!result || /[^\d]$/.test(result) || result === "0")
+      ) {
+        setResult(result === "" ? "0" : result);
+        setResult(result + ".");
       } else {
-        setResult(result === "0" ? key : result + key);
+        setResult(
+          result === "0" ? key : result === "0." ? "0." + key : result + key
+        );
       }
     }
   };

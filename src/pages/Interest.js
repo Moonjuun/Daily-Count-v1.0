@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { commaFormat, uncommaFormat } from "../utils/util";
+import { commaFormat } from "../utils/util";
 
 function Interest() {
   const [inputValues, setInputValues] = useState({
@@ -159,8 +159,8 @@ function Interest() {
           onChange={handleInputChange}
           required
         />
-        <div style={{ float: "right" }}>
-          {commaFormat(inputValues.monthlyDeposit)}
+        <div style={{ float: "right", fontWeight: "500" }}>
+          {commaFormat(inputValues.monthlyDeposit)} 원
         </div>
       </label>
       <br />
@@ -231,7 +231,7 @@ function Interest() {
       </label>
       <br />
       <button type="submit">계산</button>
-      {result && (
+      {result[0] && (
         <div className="Interest-result">
           <h5>일반과세</h5>
           <div>
@@ -282,6 +282,20 @@ function Interest() {
             <span style={{ fontWeight: "700" }}>
               {commaFormat(result[0])} 원
             </span>
+          </div>
+
+          <div className="jb-division-line"></div>
+
+          <div className="Interest-info">
+            <p>
+              ※ 월단위로 계산된 이자이기 때문에 일단위로 계산되는 금융기관의
+              적금이자와는 차이가 있습니다.
+            </p>
+            <p>
+              ※ 오차 가능성 안내 <br />본 대출금 상환 계산기는 월 단위로 계산 한
+              것이므로, 실제 대출 시작 일자에 일할 계산에 따른 약간의 차이는
+              있을 수 있습니다.
+            </p>
           </div>
         </div>
       )}

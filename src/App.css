@@ -99,3 +99,10 @@ body[data-theme="dark"] {
 .Interest-result {
   font-weight: 500;
 }
+
+.Interest-info {
+}
+
+.Interest-info > p {
+  font-size: 14px;
+}

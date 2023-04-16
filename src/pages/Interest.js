@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { commaFormat } from "../utils/util";
+import { commaFormat, uncommaFormat } from "../utils/util";
 
 function Interest() {
   const [inputValues, setInputValues] = useState({
@@ -143,7 +143,6 @@ function Interest() {
     // 계산 로직을 작성하여 결과값을 계산합니다.
     const calculatedResult = calculateInterest(inputValues);
     setResult(calculatedResult);
-    console.log(result);
   };
 
   return (
@@ -152,12 +151,17 @@ function Interest() {
       <label>
         월 적금액
         <input
+          style={{ textAlign: "right" }}
           type="number"
           min="0"
           name="monthlyDeposit"
           value={inputValues.monthlyDeposit}
           onChange={handleInputChange}
+          required
         />
+        <div style={{ float: "right" }}>
+          {commaFormat(inputValues.monthlyDeposit)}
+        </div>
       </label>
       <br />
       <label>
@@ -168,6 +172,7 @@ function Interest() {
           name="termLength"
           value={inputValues.termLength}
           onChange={handleInputChange}
+          required
         />
       </label>
       <label>
@@ -193,13 +198,14 @@ function Interest() {
 
       <br />
       <label>
-        이자율
+        이자율(%)
         <input
           type="number"
           name="interestRate"
           min="0"
           value={inputValues.interestRate}
           onChange={handleInputChange}
+          required
         />
       </label>
 

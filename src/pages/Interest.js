@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { commaFormat, uncommaFormat } from "../utils/util";
+import { commaFormat } from "../utils/util";
 
 function Interest() {
   const [inputValues, setInputValues] = useState({
@@ -10,12 +10,11 @@ function Interest() {
     isCompoundInterest: "simple",
   });
 
-  const [result, setResult] = useState(null);
-  console.log("aaa", { ...inputValues });
+  const [result, setResult] = useState([]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setInputValues({ ...inputValues, [name]: parseFloat(value) });
+    setInputValues({ ...inputValues, [name]: value });
   };
 
   const handleRadioChange = (e) => {
@@ -32,44 +31,109 @@ function Interest() {
       isCompoundInterest,
     } = inputValues;
 
-    console.log("bbb", { ...inputValues });
+    const monthlyDepositNumber = Number(monthlyDeposit);
+    const termLengthNumber = Number(termLength);
+    const interestRateNumber = Number(interestRate);
 
-    //년
-    if (termUnit === "years") {
-      console.log("years");
-      const makeMonth = termLength * 12;
+    // 입력값이 없는 경우 빈 문자열 반환
+    if (!monthlyDeposit || !termLength || !interestRate) {
+      return "";
+    }
+
+    // 입력값이 숫자가 아닌 경우 빈 문자열 반환
+    if (isNaN(monthlyDeposit) || isNaN(termLength) || isNaN(interestRate)) {
+      return "";
+    }
+
+    let totalAmount = 0;
+    let totalDeposit = 0;
+    let totalInterest = 0;
+
+    // 개월
+    if (termUnit === "months") {
       // 단리
       if (isCompoundInterest === "simple") {
-        console.log("simple");
-        const totalAmount = monthlyDeposit * makeMonth * (interestRate / 100);
-        return totalAmount;
-      } else {
-        console.log("compound");
-        const monthlyInterestRate = interestRate / 12 / 100;
-        // 복리
-        const totalAmount =
-          monthlyDeposit *
-          ((Math.pow(1 + monthlyInterestRate, makeMonth) - 1) /
-            monthlyInterestRate);
-        return totalAmount;
+        const monthlyInterestRate = (interestRateNumber * 0.01) / 12; // 월 이자율 계산
+
+        for (let i = 1; i <= termLengthNumber; i++) {
+          totalDeposit += monthlyDepositNumber; // 월 적금액을 더함
+          totalInterest += totalDeposit * monthlyInterestRate; // 단리 이자 계산
+        }
+        totalAmount = totalDeposit + totalInterest;
+        const totalInterestTax = totalInterest * 0.154;
+        const totalAmountTax = totalAmount - totalInterestTax;
+
+        return [
+          totalAmount.toFixed(),
+          totalAmountTax.toFixed(),
+          totalDeposit.toFixed(),
+          totalInterest.toFixed(),
+          totalInterestTax.toFixed(),
+        ];
       }
-    } else {
-      console.log("months");
-      // 개월
+      // 복리(o)
+      else {
+        const monthlyInterestRate = (interestRateNumber * 0.01) / 12; // 월 이자율 계산
+        for (let i = 1; i <= termLengthNumber; i++) {
+          totalAmount += monthlyDepositNumber; // 월적금액을 더함
+          totalAmount += totalAmount * monthlyInterestRate; // 복리 이자 계산
+        }
+        let totalDeposit = monthlyDepositNumber * termLengthNumber;
+        let totalInterest = totalAmount - totalDeposit;
+        let totalInterestTax = totalInterest * 0.154;
+        let totalAmountTax = totalAmount - totalInterestTax;
+
+        return [
+          totalAmount.toFixed(),
+          totalAmountTax.toFixed(),
+          totalDeposit.toFixed(),
+          totalInterest.toFixed(),
+          totalInterestTax.toFixed(),
+        ];
+      }
+    }
+    // 년
+    else {
+      const makeMonth = Number(termLength * 12);
+      // 단리
       if (isCompoundInterest === "simple") {
-        console.log("simple");
-        console.log("aa", interestRate);
-        const totalAmount = monthlyDeposit * termLength * (interestRate / 100);
-        return totalAmount;
-      } else {
-        console.log("compound");
-        const monthlyInterestRate = interestRate / 12 / 100;
-        // 복리
-        const totalAmount =
-          monthlyDeposit *
-          ((Math.pow(1 + monthlyInterestRate, termLength) - 1) /
-            monthlyInterestRate);
-        return totalAmount;
+        const monthlyInterestRate = (interestRateNumber * 0.01) / 12; // 월 이자율 계산
+
+        for (let i = 1; i <= makeMonth; i++) {
+          totalDeposit += monthlyDepositNumber; // 월 적금액을 더함
+          totalInterest += totalDeposit * monthlyInterestRate; // 단리 이자 계산
+        }
+        totalAmount = totalDeposit + totalInterest;
+        const totalInterestTax = totalInterest * 0.154;
+        const totalAmountTax = totalAmount - totalInterestTax;
+
+        return [
+          totalAmount.toFixed(),
+          totalAmountTax.toFixed(),
+          totalDeposit.toFixed(),
+          totalInterest.toFixed(),
+          totalInterestTax.toFixed(),
+        ];
+      }
+      // 복리
+      else {
+        const monthlyInterestRate = (interestRateNumber * 0.01) / 12; // 월 이자율 계산
+        for (let i = 1; i <= makeMonth; i++) {
+          totalAmount += monthlyDepositNumber; // 월적금액을 더함
+          totalAmount += totalAmount * monthlyInterestRate; // 복리 이자 계산
+        }
+        let totalDeposit = monthlyDepositNumber * makeMonth;
+        let totalInterest = totalAmount - totalDeposit;
+        let totalInterestTax = totalInterest * 0.154;
+        let totalAmountTax = totalAmount - totalInterestTax;
+
+        return [
+          totalAmount.toFixed(),
+          totalAmountTax.toFixed(),
+          totalDeposit.toFixed(),
+          totalInterest.toFixed(),
+          totalInterestTax.toFixed(),
+        ];
       }
     }
   };
@@ -79,14 +143,17 @@ function Interest() {
     // 계산 로직을 작성하여 결과값을 계산합니다.
     const calculatedResult = calculateInterest(inputValues);
     setResult(calculatedResult);
+    console.log(result);
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>적금 계산기</h1>
       <label>
         월 적금액
         <input
-          type="text"
+          type="number"
+          min="0"
           name="monthlyDeposit"
           value={inputValues.monthlyDeposit}
           onChange={handleInputChange}
@@ -96,7 +163,8 @@ function Interest() {
       <label>
         적금 기간
         <input
-          type="text"
+          type="number"
+          min="0"
           name="termLength"
           value={inputValues.termLength}
           onChange={handleInputChange}
@@ -127,8 +195,9 @@ function Interest() {
       <label>
         이자율
         <input
-          type="text"
+          type="number"
           name="interestRate"
+          min="0"
           value={inputValues.interestRate}
           onChange={handleInputChange}
         />
@@ -157,8 +226,57 @@ function Interest() {
       <br />
       <button type="submit">계산</button>
       {result && (
-        <div>
-          Result: {result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        <div className="Interest-result">
+          <h5>일반과세</h5>
+          <div>
+            원금합계:{" "}
+            <span style={{ fontWeight: "700" }}>
+              {commaFormat(result[2])} 원
+            </span>
+          </div>
+          <div>
+            세전이자:{" "}
+            <span style={{ fontWeight: "700" }}>
+              {commaFormat(result[3])} 원
+            </span>
+          </div>
+          <div style={{ color: "red" }}>
+            이자과세(15.4%):{" "}
+            <span style={{ fontWeight: "700" }}>
+              -{commaFormat(result[4])} 원
+            </span>
+          </div>
+          <div>
+            세후 수령액:{" "}
+            <span style={{ fontWeight: "700" }}>
+              {commaFormat(result[1])} 원
+            </span>
+          </div>
+
+          <div className="jb-division-line"></div>
+
+          <h5>비과세</h5>
+          <div>
+            원금합계:{" "}
+            <span style={{ fontWeight: "700" }}>
+              {commaFormat(result[2])} 원
+            </span>
+          </div>
+          <div>
+            세전이자:{" "}
+            <span style={{ fontWeight: "700" }}>
+              {commaFormat(result[3])} 원
+            </span>
+          </div>
+          <div style={{ color: "red" }}>
+            이자과세(0%): <span style={{ fontWeight: "700" }}>0 원</span>
+          </div>
+          <div>
+            세후 수령액:{" "}
+            <span style={{ fontWeight: "700" }}>
+              {commaFormat(result[0])} 원
+            </span>
+          </div>
         </div>
       )}
     </form>

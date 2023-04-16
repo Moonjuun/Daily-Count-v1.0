@@ -95,3 +95,7 @@ body[data-theme="dark"] {
   background-image: url(../public/assets/icon-kakao.png);
   background-repeat: no-repeat;
 }
+
+.Interest-result {
+  font-weight: 500;
+}

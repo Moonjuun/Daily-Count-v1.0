@@ -21,7 +21,6 @@ const CommonCal = () => {
     } else if (button === "=") {
       calculate();
     } else if (button === "←") {
-      // ← 버튼 추가
       setResult(result.slice(0, -1));
     } else if (
       button === "+" ||
@@ -87,7 +86,9 @@ const CommonCal = () => {
         <h1>계산기</h1>
         <div className="App">
           <div className="calculator">
-            <div className="result">{result}</div>{" "}
+            <div className="result">
+              {Number(result).toLocaleString("ko-KR")}
+            </div>{" "}
             <div className="button-row">
               <button
                 className="button button-ac"

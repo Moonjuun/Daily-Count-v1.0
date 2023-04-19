@@ -84,13 +84,14 @@ const Deposit = () => {
         let totalDeposit = monthlyDepositNumber;
         let totalInterest =
           monthlyDepositNumber *
-            Math.pow(1 + interestRate / 1200, termLengthNumber) -
+            Math.pow(1 + interestRateNumber / 1200, termLengthNumber) -
           monthlyDepositNumber;
         let totalInterestTax = totalInterest * 0.154;
         let totalAmountTax =
           monthlyDepositNumber *
-            Math.pow(1 + interestRate / 1200, termLengthNumber) -
+            Math.pow(1 + interestRateNumber / 1200, termLengthNumber) -
           totalInterestTax;
+        let totalAmount = totalDeposit + totalInterest;
 
         return [
           totalAmount.toFixed(),
@@ -129,13 +130,14 @@ const Deposit = () => {
         let totalDeposit = monthlyDepositNumber;
         let totalInterest =
           monthlyDepositNumber *
-            Math.pow(1 + interestRate / 1200, termLengthNumber * 12) -
+            Math.pow(1 + interestRateNumber / 1200, termLengthNumber * 12) -
           monthlyDepositNumber;
         let totalInterestTax = totalInterest * 0.154;
         let totalAmountTax =
           monthlyDepositNumber *
-            Math.pow(1 + interestRate / 1200, termLengthNumber * 12) -
+            Math.pow(1 + interestRateNumber / 1200, termLengthNumber * 12) -
           totalInterestTax;
+        let totalAmount = totalDeposit + totalInterest;
 
         return [
           totalAmount.toFixed(),
@@ -153,6 +155,7 @@ const Deposit = () => {
     // 계산 로직을 작성하여 결과값을 계산합니다.
     const calculatedResult = calculateInterest(inputValues);
     setResult(calculatedResult);
+    console.log(result);
   };
 
   return (

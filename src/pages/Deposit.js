@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { commaFormat } from "../utils/util";
 import { useNavigate } from "react-router-dom";
 
-const Interest = () => {
+const Deposit = () => {
   const [inputValues, setInputValues] = useState({
     monthlyDeposit: "",
     termLength: "",
@@ -64,7 +64,7 @@ const Interest = () => {
         const monthlyInterestRate = (interestRateNumber * 0.01) / 12; // 월 이자율 계산
 
         for (let i = 1; i <= termLengthNumber; i++) {
-          totalDeposit += monthlyDepositNumber; // 월 적금액을 더함
+          totalDeposit = monthlyDepositNumber; // 월 적금액을 더함
           totalInterest += totalDeposit * monthlyInterestRate; // 단리 이자 계산
         }
         totalAmount = totalDeposit + totalInterest;
@@ -81,15 +81,16 @@ const Interest = () => {
       }
       // 복리(o)
       else {
-        const monthlyInterestRate = (interestRateNumber * 0.01) / 12; // 월 이자율 계산
-        for (let i = 1; i <= termLengthNumber; i++) {
-          totalAmount += monthlyDepositNumber; // 월적금액을 더함
-          totalAmount += totalAmount * monthlyInterestRate; // 복리 이자 계산
-        }
-        let totalDeposit = monthlyDepositNumber * termLengthNumber;
-        let totalInterest = totalAmount - totalDeposit;
+        let totalDeposit = monthlyDepositNumber;
+        let totalInterest =
+          monthlyDepositNumber *
+            Math.pow(1 + interestRate / 1200, termLengthNumber) -
+          monthlyDepositNumber;
         let totalInterestTax = totalInterest * 0.154;
-        let totalAmountTax = totalAmount - totalInterestTax;
+        let totalAmountTax =
+          monthlyDepositNumber *
+            Math.pow(1 + interestRate / 1200, termLengthNumber) -
+          totalInterestTax;
 
         return [
           totalAmount.toFixed(),
@@ -108,7 +109,7 @@ const Interest = () => {
         const monthlyInterestRate = (interestRateNumber * 0.01) / 12; // 월 이자율 계산
 
         for (let i = 1; i <= makeMonth; i++) {
-          totalDeposit += monthlyDepositNumber; // 월 적금액을 더함
+          totalDeposit = monthlyDepositNumber; // 월 적금액을 더함
           totalInterest += totalDeposit * monthlyInterestRate; // 단리 이자 계산
         }
         totalAmount = totalDeposit + totalInterest;
@@ -125,15 +126,16 @@ const Interest = () => {
       }
       // 복리
       else {
-        const monthlyInterestRate = (interestRateNumber * 0.01) / 12; // 월 이자율 계산
-        for (let i = 1; i <= makeMonth; i++) {
-          totalAmount += monthlyDepositNumber; // 월적금액을 더함
-          totalAmount += totalAmount * monthlyInterestRate; // 복리 이자 계산
-        }
-        let totalDeposit = monthlyDepositNumber * makeMonth;
-        let totalInterest = totalAmount - totalDeposit;
+        let totalDeposit = monthlyDepositNumber;
+        let totalInterest =
+          monthlyDepositNumber *
+            Math.pow(1 + interestRate / 1200, termLengthNumber * 12) -
+          monthlyDepositNumber;
         let totalInterestTax = totalInterest * 0.154;
-        let totalAmountTax = totalAmount - totalInterestTax;
+        let totalAmountTax =
+          monthlyDepositNumber *
+            Math.pow(1 + interestRate / 1200, termLengthNumber * 12) -
+          totalInterestTax;
 
         return [
           totalAmount.toFixed(),
@@ -155,7 +157,7 @@ const Interest = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1 style={{ marginBottom: "0px" }}>적금 계산기</h1>
+      <h1 style={{ marginBottom: "0px" }}>예금 계산기</h1>
       <nav aria-label="breadcrumb">
         <ul>
           <li>
@@ -171,7 +173,7 @@ const Interest = () => {
         </ul>
       </nav>
       <label>
-        월 적금액
+        예치금액
         <input
           style={{ textAlign: "right" }}
           type="number"
@@ -187,7 +189,7 @@ const Interest = () => {
       </label>
       <br />
       <label>
-        적금 기간
+        예금 기간
         <input
           type="number"
           min="0"
@@ -325,4 +327,4 @@ const Interest = () => {
   );
 };
 
-export default Interest;
+export default Deposit;

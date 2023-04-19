@@ -11,6 +11,8 @@ import WordCal from "./pages/WordCal";
 import DateCal from "./pages/DateCal";
 import BmiCal from "./pages/BmiCal";
 import Interest from "./pages/Interest";
+import Deposit from "./pages/Deposit";
+
 import PercentageCal from "./pages/PercentCal";
 import LengthCal from "./pages/Convert/LengthCal";
 import AreaCal from "./pages/Convert/AreaCal";
@@ -53,6 +55,8 @@ function App() {
               <Route path="/DateCal" element={<DateCal />}></Route>
               <Route path="/BmiCal" element={<BmiCal />}></Route>
               <Route path="/Interest" element={<Interest />}></Route>
+              <Route path="/Deposit" element={<Deposit />}></Route>
+
               <Route path="/PercentageCal" element={<PercentageCal />}></Route>
               <Route path="/LengthCal" element={<LengthCal />}></Route>
               <Route path="/AreaCal" element={<AreaCal />}></Route>

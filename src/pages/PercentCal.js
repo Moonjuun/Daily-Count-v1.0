@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function PercentageCal() {
+const PercentageCal = () => {
   const [number1, setNumber1] = useState(0);
   const [number2, setNumber2] = useState(0);
   const [result, setResult] = useState(0);
@@ -63,6 +63,6 @@ function PercentageCal() {
       </label>
     </div>
   );
-}
+};
 
 export default PercentageCal;

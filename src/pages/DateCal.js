@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import moment from "moment";
 
-function DateCal() {
-
+const DateCal = () => {
   // 기준일
   const [firstDateInput, setFirstDateInput] = useState(
     moment().format("YYYY-MM-DD")
@@ -162,6 +161,6 @@ function DateCal() {
       <p>날짜계산은 기준일을 1일로 포함하여 계산됩니다. </p>
     </form>
   );
-}
+};
 
 export default DateCal;

@@ -96,6 +96,7 @@ body[data-theme="dark"] {
   background-repeat: no-repeat;
 }
 
+/* 이자 계산기 */
 .Interest-result {
   font-weight: 500;
 }

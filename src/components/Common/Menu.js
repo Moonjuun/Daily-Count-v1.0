@@ -45,6 +45,7 @@ const Menu = () => {
         <option value="/Interest">이자 계산기</option>
         <option value="/HourlyWageCal">시급 계산기</option>
         <option value="/DateCal">날짜 계산기</option>
+        <option value="/AgeCal">만 나이 계산기</option>
         <option value="/WordCal">글자수 계산기</option>
         <option value="/BmiCal">비만도 계산기</option>
         <option value="/PercentageCal">퍼센트 계산기</option>

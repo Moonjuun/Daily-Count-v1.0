@@ -48,6 +48,7 @@ const Menu = () => {
         <option value="/AgeCal">만 나이 계산기</option>
         <option value="/WordCal">글자수 계산기</option>
         <option value="/BmiCal">비만도 계산기</option>
+        <option value="/GradeCal">학점 계산기</option>
         <option value="/PercentageCal">퍼센트 계산기</option>
       </select>
     </div>
